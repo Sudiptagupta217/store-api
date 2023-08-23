@@ -55,7 +55,7 @@ class ProductDetails extends StatelessWidget {
                                 )
                        ],
                      ),
-                     SizedBox(height: 17,)
+                     SizedBox(height: 17,),
                    ],
                  ),
               )
