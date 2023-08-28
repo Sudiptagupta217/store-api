@@ -1,6 +1,7 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:store_api_flutter_course/consts/global_colors.dart';
 
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({super.key});
@@ -8,10 +9,10 @@ class CategoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      color: Colors.blue,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        color: Colors.blue,
         child: Stack(
           children: [
             ClipRRect(
@@ -28,6 +29,14 @@ class CategoryWidget extends StatelessWidget {
                 boxFit: BoxFit.fill,
               ),
             ),
+            Align(
+              alignment: Alignment.center,
+              child: Text("Category name",
+              textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,
+                backgroundColor: lightCardColor.withOpacity(0.5)),
+              ),
+            )
           ],
         ),
       ),

@@ -12,6 +12,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Category"),
+      ),
       body: GridView.builder(
         itemCount: 3,
         shrinkWrap: true,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:store_api_flutter_course/screen/caregory_screen.dart';
 import 'package:store_api_flutter_course/screen/feeds_screen.dart';
+import 'package:store_api_flutter_course/screen/user_screen.dart';
 import 'package:store_api_flutter_course/widgets/appbar_icons.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
@@ -42,14 +43,13 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text("Home"),
         leading: AppBarIcons(
           function: (){
-            Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: const CategoryScreen(),),
-            );
-
-
+            Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: const CategoryScreen()),);
           },
           icon: IconlyBold.category,),
         actions: [
-          AppBarIcons(function: (){}, icon: IconlyBold.user3)
+          AppBarIcons(function: (){
+            Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: const UserScreen()));
+          }, icon: IconlyBold.user3)
         ],
       ),
 

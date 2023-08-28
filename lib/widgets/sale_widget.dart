@@ -33,7 +33,7 @@ class SaleWidget extends StatelessWidget {
                     color: Color(0xff9689ce),
                     borderRadius: BorderRadius.circular(17),
                   ),
-                  child: const Padding(
+                  child:  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,

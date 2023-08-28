@@ -52,18 +52,20 @@ class FeedWidget extends StatelessWidget {
               ),
 
               const SizedBox(height: 10),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: FancyShimmerImage(
-                  height: size.height * 0.2,
-                  width: double.infinity,
-                  errorWidget: const Icon(
-                    IconlyBold.danger,
-                    color: Colors.red,
-                    size: 28,
+              Container(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: FancyShimmerImage(
+                    height: size.height * 0.2,
+                    width: double.infinity,
+                    errorWidget: const Icon(
+                      IconlyBold.danger,
+                      color: Colors.red,
+                      size: 28,
+                    ),
+                    imageUrl: "https://i.ibb.co/vwB46Yq/shoes.png",
+                    boxFit: BoxFit.fill,
                   ),
-                  imageUrl: "https://i.ibb.co/vwB46Yq/shoes.png",
-                  boxFit: BoxFit.fill,
                 ),
               ),
               SizedBox(height: 10,),
