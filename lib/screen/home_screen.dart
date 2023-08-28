@@ -1,6 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:store_api_flutter_course/screen/caregory_screen.dart';
 import 'package:store_api_flutter_course/screen/feeds_screen.dart';
 import 'package:store_api_flutter_course/widgets/appbar_icons.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -38,9 +39,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
      // backgroundColor: lightBackgroundColor,
       appBar: AppBar(
-        title: Text("Home"),
+        title: const Text("Home"),
         leading: AppBarIcons(
-          function: (){},
+          function: (){
+            Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: const CategoryScreen(),),
+            );
+
+
+          },
           icon: IconlyBold.category,),
         actions: [
           AppBarIcons(function: (){}, icon: IconlyBold.user3)

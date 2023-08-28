@@ -1,6 +1,7 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:store_api_flutter_course/screen/product_details_screen.dart';
 
 import '../consts/global_colors.dart';
 
@@ -17,7 +18,9 @@ class FeedWidget extends StatelessWidget {
         color: Theme.of(context).cardColor,
         child: InkWell(
           borderRadius: BorderRadius.circular(8.0),
-          onTap: (){},
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder:(context) => ProductDetails()));
+          },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -43,7 +46,7 @@ class FeedWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Icon(IconlyBold.heart),
+                    Icon(IconlyBold.heart,color: Colors.red,),
                   ],
                 ),
               ),

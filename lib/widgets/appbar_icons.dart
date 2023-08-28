@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppBarIcons extends StatelessWidget {
-
+  const AppBarIcons({Key? key, required this.function, required this.icon})
+      : super(key: key);
   final Function function;
   final IconData icon;
-
-  const AppBarIcons({Key? key,
-    required this.function,
-    required this.icon})
-      : super(key: key);
-
-
   @override
   Widget build(BuildContext context) {
     return Padding(
