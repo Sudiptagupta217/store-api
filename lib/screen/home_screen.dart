@@ -81,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
 
+            SizedBox(height: 16),
 
             Expanded(
               child: SingleChildScrollView(
