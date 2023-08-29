@@ -46,7 +46,7 @@ class FeedWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Icon(Icons.favorite,color: Colors.red,),
+                    Icon(IconlyBold.heart,color: Colors.red,),
                   ],
                 ),
               ),
