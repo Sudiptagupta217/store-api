@@ -15,15 +15,12 @@ class APIHanlder {
 
     var data = jsonDecode(response.body);
 
-    List tempLoist =[];
+    List tempList =[];
 
     for (var v in data){
-      tempLoist.add(v);
+      tempList.add(v);
     //  print("v $v \n\n");
     }
-
-    return ProductModel.productsFromSnapshort(tempLoist);
-
+    return ProductModel.productsFromSnapshort(tempList);
   }
-
 }

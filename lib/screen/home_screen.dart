@@ -9,6 +9,7 @@ import 'package:store_api_flutter_course/widgets/appbar_icons.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../consts/global_colors.dart';
+import '../models/Product_model.dart';
 import '../widgets/feeds_widget.dart';
 import '../widgets/sale_widget.dart';
 
@@ -21,6 +22,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late TextEditingController _searchController ;
+
+  List<ProductModel> productList =[];
 
   @override
   void initState() {
@@ -35,10 +38,16 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
+  void didChangeDependencies(){
     super.didChangeDependencies();
-    APIHanlder.getAllProducts();
+    getProduct();
+  }
+
+  Future<void> getProduct () async{
+    productList = await APIHanlder.getAllProducts();
+    setState(() {
+
+    });
   }
 
   @override
@@ -89,7 +98,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
 
-            SizedBox(height: 16),
 
             Expanded(
               child: SingleChildScrollView(
@@ -134,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     GridView.builder(
-                      itemCount: 5,
+                      itemCount: 3,
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -144,7 +152,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           childAspectRatio: 0.6
                       ),
                       itemBuilder: (context, index) {
-                        return FeedWidget();
+                        return FeedWidget(
+                          imageUrl: productList[index].images![0],
+                          title: productList[index].title.toString(),
+                        );
                       },)
                   ],
                 ),
