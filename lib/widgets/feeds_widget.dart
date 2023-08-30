@@ -6,7 +6,8 @@ import 'package:store_api_flutter_course/screen/product_details_screen.dart';
 import '../consts/global_colors.dart';
 
 class FeedWidget extends StatelessWidget {
-  const FeedWidget({super.key});
+  final String title, imageUrl;
+  const FeedWidget({Key? key, required this.title, required this.imageUrl}):super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class FeedWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Icon(IconlyBold.heart,color: Colors.red,),
+                    Icon(Icons.favorite_border,color: Colors.red,),
                   ],
                 ),
               ),
@@ -63,7 +64,7 @@ class FeedWidget extends StatelessWidget {
                       color: Colors.red,
                       size: 28,
                     ),
-                    imageUrl: "https://i.ibb.co/vwB46Yq/shoes.png",
+                    imageUrl: imageUrl,
                     boxFit: BoxFit.fill,
                   ),
                 ),
@@ -71,7 +72,7 @@ class FeedWidget extends StatelessWidget {
               SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("Title",
+                child: Text(title,
                 overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: TextStyle(

@@ -4,10 +4,12 @@ import 'package:page_transition/page_transition.dart';
 import 'package:store_api_flutter_course/screen/caregory_screen.dart';
 import 'package:store_api_flutter_course/screen/feeds_screen.dart';
 import 'package:store_api_flutter_course/screen/user_screen.dart';
+import 'package:store_api_flutter_course/services/apihandler.dart';
 import 'package:store_api_flutter_course/widgets/appbar_icons.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../consts/global_colors.dart';
+import '../models/Product_model.dart';
 import '../widgets/feeds_widget.dart';
 import '../widgets/sale_widget.dart';
 
@@ -21,6 +23,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late TextEditingController _searchController ;
 
+  List<ProductModel> productList =[];
+
   @override
   void initState() {
     super.initState();
@@ -31,6 +35,19 @@ class _HomeScreenState extends State<HomeScreen> {
   void dispose() {
     super.dispose();
     _searchController.dispose();
+  }
+
+  @override
+  void didChangeDependencies(){
+    super.didChangeDependencies();
+    getProduct();
+  }
+
+  Future<void> getProduct () async{
+    productList = await APIHanlder.getAllProducts();
+    setState(() {
+
+    });
   }
 
   @override
@@ -135,7 +152,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           childAspectRatio: 0.6
                       ),
                       itemBuilder: (context, index) {
-                        return FeedWidget();
+                        return FeedWidget(
+                          imageUrl: productList[index].images![0],
+                          title: productList[index].title.toString(),
+                        );
                       },)
                   ],
                 ),
