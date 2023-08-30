@@ -1,4 +1,6 @@
-class Category {
+import 'package:flutter/cupertino.dart';
+
+class Category with ChangeNotifier{
   Category({
       this.id, 
       this.name, 
@@ -27,6 +29,14 @@ class Category {
     map['creationAt'] = creationAt;
     map['updatedAt'] = updatedAt;
     return map;
+  }
+
+  static List<Category> categoryFromSnapshort(List categorySnapshort){
+    // print("data ${productSnapshort[0]}");
+    return categorySnapshort.map((data){
+//      print("data $data");
+      return Category.fromJson(data);
+    } ).toList();
   }
 
 }

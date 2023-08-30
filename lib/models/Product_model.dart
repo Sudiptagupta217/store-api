@@ -1,6 +1,3 @@
-import 'dart:math';
-
-
 import 'package:flutter/material.dart';
 
 import 'Category.dart';
@@ -51,7 +48,7 @@ class ProductModel with ChangeNotifier {
   }
 
   static List<ProductModel> productsFromSnapshort(List productSnapshort){
-    print("data ${productSnapshort[0]}");
+   // print("data ${productSnapshort[0]}");
     return productSnapshort.map((data){
 //      print("data $data");
       return ProductModel.fromJson(data);
