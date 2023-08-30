@@ -36,26 +36,24 @@ class _FeedsScreenState extends State<FeedsScreen> {
       appBar: AppBar(
         title: Text("All Products"),
       ),
-      body: SingleChildScrollView(
-        child:productList.isEmpty?
-        Center(child: CircularProgressIndicator())
-        :GridView.builder(
-          itemCount: productList.length,
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 0.0,
-              mainAxisSpacing: 0.0,
-              childAspectRatio: 0.7
-          ),
-          itemBuilder: (context, index) {
-            return FeedWidget(
-              title: productList[index].title.toString(),
-              imageUrl: productList[index].images![0],
-            );
-          },
+      body: productList.isEmpty?
+      Center(child: CircularProgressIndicator())
+      :GridView.builder(
+        itemCount: productList.length,
+       // shrinkWrap: true,
+        //physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 0.0,
+            mainAxisSpacing: 0.0,
+            childAspectRatio: 0.7
         ),
+        itemBuilder: (context, index) {
+          return FeedWidget(
+            title: productList[index].title.toString(),
+            imageUrl: productList[index].images![0],
+          );
+        },
       ),
     );
   }
