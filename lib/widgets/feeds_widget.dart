@@ -1,16 +1,21 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:provider/provider.dart';
+import 'package:store_api_flutter_course/models/Product_model.dart';
 import 'package:store_api_flutter_course/screen/product_details_screen.dart';
 
 import '../consts/global_colors.dart';
 
 class FeedWidget extends StatelessWidget {
-  final String title, imageUrl;
-  const FeedWidget({Key? key, required this.title, required this.imageUrl}):super(key: key);
+
+  const FeedWidget({Key? key,}):super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    final ProductModel productModelProvider = Provider.of<ProductModel>(context);
+
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -33,13 +38,13 @@ class FeedWidget extends StatelessWidget {
                     Flexible(
                       child: RichText(
                         text: TextSpan(
-                          text: '\$',
+                          text: '\$ ',
                           style: TextStyle(
                             color: Color.fromRGBO(33, 150, 243, 1)
                           ),
                           children: <TextSpan>[
                             TextSpan(
-                              text: "123.00",
+                              text: productModelProvider.price.toString(),
                               style: TextStyle( color: lightTextColor,
                                   fontWeight: FontWeight.w600)
                             ),
@@ -64,7 +69,7 @@ class FeedWidget extends StatelessWidget {
                       color: Colors.red,
                       size: 28,
                     ),
-                    imageUrl: imageUrl,
+                    imageUrl: productModelProvider.images![0],
                     boxFit: BoxFit.fill,
                   ),
                 ),
@@ -72,7 +77,7 @@ class FeedWidget extends StatelessWidget {
               SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(title,
+                child: Text(productModelProvider.title.toString(),
                 overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: TextStyle(

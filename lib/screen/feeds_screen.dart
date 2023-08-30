@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/Product_model.dart';
 import '../services/apihandler.dart';
@@ -46,12 +47,14 @@ class _FeedsScreenState extends State<FeedsScreen> {
             crossAxisCount: 2,
             crossAxisSpacing: 0.0,
             mainAxisSpacing: 0.0,
-            childAspectRatio: 0.7
+            childAspectRatio: 0.65
         ),
         itemBuilder: (context, index) {
-          return FeedWidget(
-            title: productList[index].title.toString(),
-            imageUrl: productList[index].images![0],
+          return ChangeNotifierProvider.value(
+            value: productList[index],
+            child: const FeedWidget(
+
+            ),
           );
         },
       ),

@@ -1,8 +1,11 @@
 import 'dart:math';
 
+
+import 'package:flutter/material.dart';
+
 import 'Category.dart';
 
-class ProductModel {
+class ProductModel with ChangeNotifier {
   ProductModel({
        this.id,
        this.title,

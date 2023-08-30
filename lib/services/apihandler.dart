@@ -5,8 +5,6 @@ import 'package:store_api_flutter_course/consts/api_consts.dart';
 import 'package:store_api_flutter_course/models/Product_model.dart';
 
 class APIHanlder {
-
-
   static Future<List<ProductModel>> getAllProducts() async {
     var uri = Uri.https(BASE_URL, "/api/v1/products");
 
@@ -15,11 +13,11 @@ class APIHanlder {
 
     var data = jsonDecode(response.body);
 
-    List tempList =[];
+    List tempList = [];
 
-    for (var v in data){
+    for (var v in data) {
       tempList.add(v);
-    //  print("v $v \n\n");
+      //  print("v $v \n\n");
     }
     return ProductModel.productsFromSnapshort(tempList);
   }
