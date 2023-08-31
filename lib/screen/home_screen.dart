@@ -171,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     //   },)
 
                     FutureBuilder<List<ProductModel>>(
-                      future: APIHanlder.getAllProducts(),
+                      future: APIHanlder.getAllProducts(limit: "3"),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {

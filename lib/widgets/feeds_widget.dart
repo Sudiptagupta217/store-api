@@ -25,7 +25,7 @@ class FeedWidget extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(8.0),
           onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder:(context) => ProductDetails()));
+            Navigator.push(context, MaterialPageRoute(builder:(context) => ProductDetails(id: productModelProvider.id.toString(),)));
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
-class Category with ChangeNotifier{
+class Category with ChangeNotifier {
   Category({
-      this.id, 
-      this.name, 
-      this.image, 
-      this.creationAt, 
-      this.updatedAt,});
+    this.id,
+    this.name,
+    this.image,
+    this.creationAt,
+    this.updatedAt,
+  });
 
   Category.fromJson(dynamic json) {
     id = json['id'];
@@ -15,6 +16,7 @@ class Category with ChangeNotifier{
     creationAt = json['creationAt'];
     updatedAt = json['updatedAt'];
   }
+
   int? id;
   String? name;
   String? image;
@@ -31,12 +33,11 @@ class Category with ChangeNotifier{
     return map;
   }
 
-  static List<Category> categoryFromSnapshort(List categorySnapshort){
+  static List<Category> categoryFromSnapshort(List categorySnapshort) {
     // print("data ${productSnapshort[0]}");
-    return categorySnapshort.map((data){
+    return categorySnapshort.map((data) {
 //      print("data $data");
       return Category.fromJson(data);
-    } ).toList();
+    }).toList();
   }
-
 }

@@ -1,13 +1,17 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:provider/provider.dart';
 import 'package:store_api_flutter_course/consts/global_colors.dart';
+import 'package:store_api_flutter_course/models/UsersModel.dart';
 
 class UserWidget extends StatelessWidget {
   const UserWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    final UsersModel usersModelProvider = Provider.of<UsersModel>(context);
 
     Size size = MediaQuery.of(context).size;
 
@@ -20,13 +24,13 @@ class UserWidget extends StatelessWidget {
           color: Colors.red,
           size: 28,
         ),
-        imageUrl: "https://i.ibb.co/vwB46Yq/shoes.png",
+        imageUrl: usersModelProvider.avatar!,
         boxFit: BoxFit.fill,
       ),
-      title: Text("User name"),
-      subtitle: Text("email@gmail.com"),
+      title: Text(usersModelProvider.name!),
+      subtitle: Text(usersModelProvider.email!),
 
-      trailing: Text("User role",
+      trailing: Text(usersModelProvider.role!,
       style: TextStyle(
         color: lightIconsColor,
         fontWeight: FontWeight.bold

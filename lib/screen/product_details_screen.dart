@@ -2,16 +2,55 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:store_api_flutter_course/consts/global_colors.dart';
+import 'package:store_api_flutter_course/models/Product_model.dart';
+import 'package:store_api_flutter_course/services/apihandler.dart';
 
-class ProductDetails extends StatelessWidget {
-  const ProductDetails({super.key});
+class ProductDetails extends StatefulWidget {
+  final String id;
+
+  const ProductDetails({super.key, required this.id});
+
+  @override
+  State<ProductDetails> createState() => _ProductDetailsState();
+
+
+}
+
+class _ProductDetailsState extends State<ProductDetails> {
+
+
+  ProductModel? productModel;
+
+  bool isError = false;
+  String errorStr = "";
+
+  Future<void> getProductInfo() async {
+    try {
+      productModel = await APIHanlder.getProductDetails(id: widget.id);
+    } catch (e) {
+      isError = true;
+      errorStr = e.toString();
+    }
+    setState(() {
+
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    getProductInfo();
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: isError ? Center(child: Text("Error $errorStr")): productModel == null ? Center(
+            child: const CircularProgressIndicator()) : SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -26,9 +65,9 @@ class ProductDetails extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Category",
+                      productModel!.category!.name.toString(),
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                      TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(
                       height: 18,
@@ -38,8 +77,7 @@ class ProductDetails extends StatelessWidget {
                       children: [
                         Flexible(
                             flex: 3,
-                            child: Text(
-                              "Lorem Ipsum",
+                            child: Text(productModel!.title.toString(),
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                   fontSize: 17, fontWeight: FontWeight.w500),
@@ -55,7 +93,7 @@ class ProductDetails extends StatelessWidget {
                                     fontWeight: FontWeight.w600),
                                 children: [
                                   TextSpan(
-                                      text: "12,34",
+                                      text: productModel!.price.toString(),
                                       style: TextStyle(
                                           color: lightTextColor,
                                           fontWeight: FontWeight.bold))
@@ -76,18 +114,18 @@ class ProductDetails extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return FancyShimmerImage(
                       width: double.infinity,
-                      imageUrl: "https://i.ibb.co/vwB46Yq/shoes.png",
+                      imageUrl: productModel!.images![index],
                       boxFit: BoxFit.fill,
                     );
                   },
                   itemCount: 3,
                   autoplay: true,
                   pagination: SwiperPagination(
-                    alignment: Alignment.bottomCenter,
-                    builder: DotSwiperPaginationBuilder(
-                      activeColor: Colors.grey.shade500,
-                      color: Colors.white70
-                    )
+                      alignment: Alignment.bottomCenter,
+                      builder: DotSwiperPaginationBuilder(
+                          activeColor: Colors.grey.shade500,
+                          color: Colors.white70
+                      )
                   ),
                 ),
               ),
@@ -99,10 +137,15 @@ class ProductDetails extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Description",style: TextStyle(color: Colors.black,fontSize: 19,fontWeight: FontWeight.bold),),
+                    Text("Description", style: TextStyle(color: Colors.black,
+                        fontSize: 19,
+                        fontWeight: FontWeight.bold),),
                     SizedBox(height: 17,),
-                    Text("These examples are programmatically compiled from various online sources to illustrate current usage of the word 'description.' Any opinions expressed in the examples do not represent those of Merriam-Webster or its editors. Send us feedback about these examples. These examples are programmatically compiled from various online sources to illustrate current usage of the word 'description.' Any opinions expressed in the examples do not represent those of Merriam-Webster or its editors. Send us feedback about these examples. These examples are programmatically compiled from various online sources to illustrate current usage of the word 'description.' Any opinions expressed in the examples do not represent those of Merriam-Webster or its editors. Send us feedback about these examples.",
-                      textAlign: TextAlign.start, style: TextStyle(color: Colors.black54,fontSize: 14,fontWeight: FontWeight.normal),),
+                    Text(productModel!.description.toString(),
+                      textAlign: TextAlign.start,
+                      style: TextStyle(color: Colors.black54,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal),),
 
                   ],
                 ),
