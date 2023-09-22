@@ -1,11 +1,15 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:store_api_flutter_course/consts/api_consts.dart';
 import 'package:store_api_flutter_course/models/Product_model.dart';
 import 'package:store_api_flutter_course/models/Category.dart';
 import 'package:store_api_flutter_course/models/UsersModel.dart';
+import 'package:store_api_flutter_course/screen/home_screen.dart';
 
 class APIHanlder {
   static Future<List<dynamic>> getData({required String target, String? limit}) async {
@@ -94,4 +98,53 @@ class APIHanlder {
      throw error.toString();
    }
   }
+
+
+  static singUp(String email, String password) async{
+    try{
+      var uri = Uri.https("reqres.in","/api/register");
+
+      var response =await http.post(uri,
+
+          body: {
+            'email':email,
+            'password':password
+          }
+      );
+      var data = jsonDecode(response.body);
+      if(response.statusCode==200){
+        return 'success';
+      }else{
+        print("Fail");
+        print(data['error']);
+      }
+    }catch(e){
+      print(e.toString());
+    }
+  }
+  
+  static logIn (String email, String password)async{
+    try {
+      var uri = Uri.https("reqres.in", "/api/login");
+
+      var response = await http.post(uri,
+          body:{
+            "email":email,
+            "password":password
+          },
+      );
+      var data = jsonDecode(response.body);
+      if(response.statusCode == 200){
+        return "loginsuccess";
+      }else{
+        print("login failed");
+        print(data["error"]);
+      }
+    }
+    catch(e){
+      print(e.toString());
+    }
+    
+  }
+
 }
